@@ -56,15 +56,15 @@ app.post("/urls", (req, res) => {
   // res.send("Ok");         // Respond with 'Ok' (we will replace this)
  
   let str = generateRandomString();
-  console.log(str);
-  console.log(req.body);
+  //console.log(str);
+  //console.log(req.body);
   urlDatabase[str] = req.body["longURL"];
 
   res.redirect(`/urls/${str}`);
 });
 
 app.get("/u/:shortURL", (req, res) => {
-  const longURL = req.params.longURL;
+  const longURL = urlDatabase[req.params.shortURL];
   res.redirect(longURL);
 });
 
