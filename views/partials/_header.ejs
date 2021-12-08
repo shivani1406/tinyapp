@@ -15,9 +15,12 @@
       <% if ( username ) { %>
         <%= username %> <a href="/logout" class="btn btn-light">Logout</a>
         
-        <% } else { %>
+        <% } %>
+        <% if (userid) { %>
+          <%= user_detail[userid].email %> <a href="/logout" class="btn btn-light">Logout</a>
+       <% } else { %>
           
-      <input type="text" name="username" value="" placeholder="username" size=20/>
+     <!-- <input type="text" name="username" value="" placeholder="username" size=20/> --> 
       <input type="submit" value="Login" class="btn btn-light">
       <% } %>
     </form></div>
