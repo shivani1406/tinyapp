@@ -105,11 +105,17 @@ app.get("/logout", (req, res) => {
   res.redirect('/urls');
 });
 
-app.get("/set", (req, res) => {
-  const a = 1;
-  res.send(`a = ${a}`);
+app.get("/register", (req, res) => {
+  const templateVars = { username: req.cookies["username"]}
+  res.render("register",templateVars);
  });
  
+ // 404
+app.get('*',(req,res)=>{
+  res.status(404);
+  res.render('404');
+});
+
  app.get("/fetch", (req, res) => {
   res.send(`a = ${a}`);
  });

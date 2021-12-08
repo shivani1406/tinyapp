@@ -1,27 +1,27 @@
 <header>
  
-    <nav class="navbar navbar-expand-md navbar-dark bg-success">
-      <a class="navbar-brand" href="/urls">TinyApp</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="/urls">My URLs</a>
-          <a class="nav-item nav-link" href="/urls/new">Create New URL</a>
-        </div>
+  <nav class="navbar navbar-expand-md navbar-dark bg-success">
+    <a class="navbar-brand" href="/urls">TinyApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="/urls">My URLs</a>
+        <a class="nav-item nav-link" href="/urls/new">Create New URL</a>
       </div>
-      <div> <form method="post" action="/login">
-        <% if ( username ) { %>
-          <%= username %> <a href="/logout" class="btn btn-light">Logout</a>
+    </div>
+    <div> <form method="post" action="/login">
+      <% if ( username ) { %>
+        <%= username %> <a href="/logout" class="btn btn-light">Logout</a>
+        
+        <% } else { %>
           
-          <% } else { %>
-            
-        <input type="text" name="username" value="" placeholder="username" size=20/>
-        <input type="submit" value="Login" class="btn btn-light">
-        <% } %>
-      </form></div>
-    </nav>
-  
- 
+      <input type="text" name="username" value="" placeholder="username" size=20/>
+      <input type="submit" value="Login" class="btn btn-light">
+      <% } %>
+    </form></div>
+  </nav>
+
+
 </header>
