@@ -21,6 +21,9 @@
     
         <!-- Login Form -->
         <form method="post" action="/register">
+        <% if (check_email) { %>
+          Error ! duplicate email 
+          <% } %>
           <input type="email" id="email" class="form-control" name="email" placeholder="email" size=30> <br>
           <input type="password" id="password" class="form-control" name="password" placeholder="password" size=30><br>
           <input type="submit" class="fadeIn fourth" value="Register">

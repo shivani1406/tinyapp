@@ -21,6 +21,15 @@ for (let i = len; i > 0; i--) {
 return ans;
 }
 
+const checkDuplicateEmail = function(email) {
+  for (let l in users) {
+    if (users[l].email === email) {
+      return true;
+    }
+  }
+  return false;
+};
+
 const urlDatabase = {
   "b2xVn2": "http://www.lighthouselabs.ca",
   "9sm5xK": "http://www.google.com"
@@ -123,20 +132,36 @@ app.get("/logout", (req, res) => {
 });
 
 app.get("/register", (req, res) => {
-  const templateVars = { username: req.cookies["username"] , user_detail : users, userid : req.cookies["user_id"]}
+  let checkemail = false;
+  res.cookie('check_email',false);
+  const templateVars = { username: req.cookies["username"] , user_detail : users, userid : req.cookies["user_id"] , check_email : false};
   res.render("register",templateVars);
  });
  
  app.post("/register", (req, res) => {
-   let id = generateRandomString();
-   let user = req.body["email"];
-   let password = req.body["password"];
-
-   users[id] = {"id" : id,"email" : user,"password" : password};
-   res.cookie('user_id', id);
-   console.log(users);
-   res.redirect("/urls");
-
+  let check_email = checkDuplicateEmail(req.body["email"]);
+   
+   if (check_email) {
+    const templateVars = { username: req.cookies["username"] , user_detail : users, userid : req.cookies["user_id"] , check_email : true};
+    //  console.log(check_email);
+     res.render("register",templateVars);
+   } else {
+    if(req.body["email"] === '' || req.body["password"] === '') {
+      res.redirect("*");
+    } else {
+     let id = generateRandomString();
+     let user = req.body["email"];
+     let password = req.body["password"];
+  
+     users[id] = {"id" : id,"email" : user,"password" : password};
+     res.cookie('user_id', id);
+     console.log(users);
+     res.redirect("/urls");
+  
+    }
+   }
+  
+   
  });
  // 404
 app.get('*',(req,res)=>{
