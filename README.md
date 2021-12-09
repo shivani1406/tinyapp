@@ -6,7 +6,7 @@ TinyApp is a full stack web application built with Node and Express that allows 
 
 ![](/screenshots/Screenshot%20from%202021-12-09%2017-10-51.png)
 
-!["screenshot description"](#)
+![](/screenshots/Screenshot%20from%202021-12-09%2017-13-04.png)
 
 ## Dependencies
 
