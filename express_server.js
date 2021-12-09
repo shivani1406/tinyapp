@@ -4,9 +4,12 @@ const PORT = 8080; // default port 8080
 const bcrypt = require('bcryptjs');
 app.set("view engine", "ejs");
 
+const checkDuplicateEmail = require('./helper');
+
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: true}));
-
+// Middleware
+// Makes cookie readable / parses
 const cookieParser = require('cookie-parser')
 app.use(cookieParser());
 const cookieSession = require('cookie-session')
@@ -18,7 +21,7 @@ app.use(
 );
 
 
-
+// ----- Random string generation function ----------
 const generateRandomString = function() {
 let arr = "1234567890abcdefghijklmnopqrstuvwx".split('');
 let len = 6;
@@ -30,12 +33,14 @@ for (let i = len; i > 0; i--) {
 return ans;
 }
 
-const checkDuplicateEmail = require('./helper');
+
 
 // const urlDatabase = {
 //   "b2xVn2": "http://www.lighthouselabs.ca",
 //   "9sm5xK": "http://www.google.com"
 // };
+
+// ------------- Objects declaration --------------
 const urlDatabase = {
   b6UTxQ: {
       longURL: "https://www.tsn.ca",
@@ -59,6 +64,8 @@ const users = {
     password: "dishwasher-funk"
   }
 }
+
+// ------------------ General Routes ----------------------
 
 app.get("/", (req, res) => {
   res.send("Hello!");
@@ -178,6 +185,8 @@ app.post("/urls/:shortURL/delete", (req, res) => {
   }
 });
 
+// ------------ Login Routes --------------------
+
 app.post("/login1", (req, res) => {
   // res.cookie('username', req.body["username"]);
 
@@ -216,6 +225,8 @@ app.post("/login", (req, res) => {
   }
   res.status(403).send("No such user");
 });
+
+// ------------- Registration Routes -----------------
 
 app.get("/register", (req, res) => {
   let checkemail = false;
