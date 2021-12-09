@@ -147,9 +147,12 @@ app.post("/urls/:shortURL", (req, res) => {
   if (templateVars.userid === undefined) {
     res.render("login",templateVars);
   } else {
-    urlDatabase[req.params.shortURL].longURL = req.body["longURL"];
-    // console.log(req.body["longURL"]);
-    res.redirect('/urls');
+    // if (req.cookies["user_id"] === urlDatabase[req.params.shortURL].userID) {
+      urlDatabase[req.params.shortURL].longURL = req.body["longURL"];
+      // console.log(req.body["longURL"]);
+      res.redirect('/urls');
+    // }
+    
   }
   
 });
@@ -165,8 +168,11 @@ app.post("/urls/:shortURL/delete", (req, res) => {
   if (templateVars.userid === undefined) {
     res.render("login",templateVars);
   } else {
-  delete urlDatabase[shortURL];
-  res.redirect('/urls');
+    // if (req.cookies["user_id"] === urlDatabase[shortURL].userID) {
+      delete urlDatabase[shortURL];
+      res.redirect('/urls');
+    // }
+  
   }
 });
 
