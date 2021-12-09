@@ -12,10 +12,7 @@
       </div>
     </div>
     <div> <form method="post" action="/login1">
-      <% if ( username ) { %>
-        <%= username %> <a href="/logout" class="btn btn-light">Logout</a>
-        
-        <% } %>
+     
         <% if (userid) { %>
           <%= user_detail[userid].email %> <a href="/logout" class="btn btn-light">Logout</a>
        <% } else { %>
