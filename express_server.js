@@ -30,14 +30,7 @@ for (let i = len; i > 0; i--) {
 return ans;
 }
 
-const checkDuplicateEmail = function(email) {
-  for (let l in users) {
-    if (users[l].email === email) {
-      return true;
-    }
-  }
-  return false;
-};
+const checkDuplicateEmail = require('./helper');
 
 // const urlDatabase = {
 //   "b2xVn2": "http://www.lighthouselabs.ca",
@@ -193,7 +186,8 @@ app.post("/login1", (req, res) => {
 
 app.get("/logout", (req, res) => {
   //res.clearCookie("username");
-  res.clearCookie("user_id");
+  //res.clearCookie("user_id");
+  delete req.session.user_id;
   res.redirect('/urls');
 });
 
@@ -231,7 +225,7 @@ app.get("/register", (req, res) => {
  });
  
  app.post("/register", (req, res) => {
-  let check_email = checkDuplicateEmail(req.body["email"]);
+  let check_email = checkDuplicateEmail(req.body["email"],users);
    
    if (check_email) {
     const templateVars = {  user_detail : users, 
