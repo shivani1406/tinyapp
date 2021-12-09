@@ -119,7 +119,7 @@ app.post("/urls/:shortURL/delete", (req, res) => {
   res.redirect('/urls');
 });
 
-app.post("/login", (req, res) => {
+app.post("/login1", (req, res) => {
   // res.cookie('username', req.body["username"]);
 
   res.redirect('/register');
@@ -129,6 +129,30 @@ app.get("/logout", (req, res) => {
   res.clearCookie("username");
   res.clearCookie("user_id");
   res.redirect('/urls');
+});
+
+app.get("/login", (req, res) => {
+  const templateVars = { username: req.cookies["username"] , user_detail : users, userid : req.cookies["user_id"] , check_email : false};
+   res.render('login',templateVars);
+});
+
+app.post("/login", (req, res) => {
+  const templateVars = { username: req.cookies["username"] , user_detail : users, userid : req.cookies["user_id"] , check_email : false};
+
+  let user = req.body["email"];
+  let password = req.body["password"];
+
+  for (let l in users) {
+    if (users[l].email === user) {
+      if (users[l].password === password) {
+        res.cookie('user_id', users[l].id);
+        res.redirect("/urls");
+      } else {
+        res.status(403).send("No such user");
+      }
+    }
+  }
+  res.status(403).send("No such user");
 });
 
 app.get("/register", (req, res) => {

@@ -11,7 +11,7 @@
         <a class="nav-item nav-link" href="/urls/new">Create New URL</a>
       </div>
     </div>
-    <div> <form method="post" action="/login">
+    <div> <form method="post" action="/login1">
       <% if ( username ) { %>
         <%= username %> <a href="/logout" class="btn btn-light">Logout</a>
         
@@ -21,7 +21,8 @@
        <% } else { %>
           
      <!-- <input type="text" name="username" value="" placeholder="username" size=20/> --> 
-      <input type="submit" value="Login" class="btn btn-light">
+     <a href="/login" class="btn btn-light">Login</a>
+      <input type="submit" value="Register" class="btn btn-dark">
       <% } %>
     </form></div>
   </nav>
